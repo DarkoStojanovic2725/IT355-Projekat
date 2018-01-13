@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Administrator page</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}"
+          rel="stylesheet" media="screen"/>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"
+            th:src="@{/webjars/jquery/3.2.1/jquery.min.js}"></script>
+    <div th:replace="head::head"></div>
+</head>
+<body style="padding-top: 200px">
+<div class="container">
+    <h1>Admin page</h1>
+    <h3>
+        <a th:href="@{/administrator/inventarProizvoda}">Svi proizvodi</a>
+    </h3>
+
+    <p>Pregled svih proizvoda dostupnih na sajtu</p>
+
+    <br/><br/>
+
+    <h3>
+        <a th:href="@{/administrator/customers}">Customers</a>
+    </h3>
+
+    <p>Pregled informacija o kupcima</p>
+
+    <br/><br/>
+
+    <h3>
+        <a th:href="@{/administrator/dodajProizvod}">Dodaj proizvod</a>
+    </h3>
+    <p>Dodavanje proizvoda</p>
+</div>
+</body>
+</html>

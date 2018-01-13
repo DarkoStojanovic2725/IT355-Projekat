@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Met Mobile Store - Inventar</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}"
+          rel="stylesheet" media="screen"/>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"
+            th:src="@{/webjars/jquery/3.2.1/jquery.min.js}"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"
+            th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"
+    ></script>
+    <div th:replace="head::head"></div>
+</head>
+<body style="padding-top: 200px">
+<div class="container">
+    <h1>Pregled proizvoda</h1>
+    <h3>
+        <a th:href="@{/administrator/dodajProizvod}">Dodaj proizvod</a>
+    </h3>
+    <table id="tabelaProiz" class="table table-bordered">
+        <thead>
+        <tr>
+            <th>Slika proizvoda</th>
+            <th>Naziv proizvoda</th>
+            <th>Kategorija</th>
+            <th>Cena</th>
+            <th>Detaljniji pregled</th>
+            <th>Ukloni proizvod</th>
+            <th>Izmeni proizvod</th>
+        </tr>
+        </thead>
+        <th:block th:each="product : ${products}">
+
+            <tr>
+                <td><img th:src="${product.slika}" alt="img" class="img-responsive" style="width:150px; height: 150px"/></td>
+                <td th:text="${product.nazivProizvoda}"></td>
+                <td th:text="${product.kategorija}"></td>
+                <td th:text="${product.cena}"> RSD</td>
+                <td>
+                    <a th:href="@{'/proizvod/pregledProizvoda/' + ${product.proizvodId}}">View</a>
+                </td>
+                <td>
+                    <a th:href="@{'/administrator/proizvod/obrisiProizvod/' + ${product.proizvodId}}">Obrisi</a>
+                </td>
+                <td>
+                    <a th:href="@{'/administrator/proizvod/editProizvod/' + ${product.proizvodId}}">Izmeni</a>
+                </td>
+            </tr>
+        </th:block>
+    </table>
+</div>
+</body>
+</html>

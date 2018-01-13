@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Met Mobile Store Korpa</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}"
+          rel="stylesheet" media="screen"/>
+    <link th:rel="icon" th:href="@{/resources/images/icon.ico}" />
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"
+            th:src="@{/webjars/jquery/3.2.1/jquery.min.js}"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"
+            th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"
+    ></script>
+</head>
+
+<div th:replace="head::head"></div>
+<body style="padding-top: 150px" th:with="s=${0}">
+<div class="container">
+    <section>
+        <div class="jumbotron">
+            <div class="container">
+                <h1>Korpa</h1>
+                <p>Svi dodati proizvodi u korpi</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="container">
+
+            <a th:href="@{/customer/korpa/checkout}" class="btn btn-success pull-right"><span class="glyphicon glyphicon-shopping-cart"></span> Checkout</a>
+
+        <br/><br/><br/>
+
+        <table id="example" class="display" cellspacing="0" width="100%">
+            <tr>
+                <th>Obrisi</th>
+                <th>Slika</th>
+                <th>Naziv</th>
+                <th>Cena</th>
+                <th>Kolicina</th>
+                <th>Ukupno</th>
+            </tr>
+            <th:block th:each="item, status : ${session.korpa}" >
+                <div th:with="s=${s + item.product.cena * item.kolicina}">
+                <tr>
+                    <td><a th:href="@{'/customer/korpa/ukloni/' + ${status.index}}"><span class="glyphicon glyphicon-remove" style="color: red"></span></a></td>
+                    <td><a th:href="@{'/proizvod/pregledProizvoda/' + ${item.product.proizvodId}}"><img th:src="${item.product.slika}" alt="img" class="img-responsive" style="width:150px; height: 150px"/></a></td>
+                    <td th:text="${item.product.nazivProizvoda}"></td>
+                    <td th:text="${item.product.cena}"></td>
+                    <td th:text="${item.kolicina}"></td>
+                    <td th:text="${item.product.cena * item.kolicina}"></td>
+                </tr>
+                </div>
+            </th:block>
+            <!--<tr><td colspan="6" align="right"><b>Ukupno </b></td>-->
+                <!--<td th:text="${s}"></td>-->
+            <!--</tr>-->
+        </table>
+
+        <a th:href="@{/proizvod/listaProizvoda/sviProizvodi}" class="btn btn-primary">Nastavak kupovine</a>
+
+    </section>
+
+</div>
+</body>
+</html>

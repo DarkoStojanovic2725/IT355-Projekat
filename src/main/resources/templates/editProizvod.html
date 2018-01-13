@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Izmena proizvoda</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}"
+          rel="stylesheet" media="screen"/>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"
+            th:src="@{/webjars/jquery/3.2.1/jquery.min.js}"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"
+            th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"
+    ></script>
+    <div th:replace="head::head"></div>
+</head>
+<body style="padding-top: 200px">
+<div class="container">
+    <h1>Izmena proizvoda</h1>
+    <p>Popunite sva potrebna polja za promenu</p>
+    <form class="form-horizontal" th:object="${product}" th:action="@{/administrator/proizvod/editProizvod}" method="post" enctype="multipart/form-data">
+        <input type="hidden" th:field="*{proizvodId}"/>
+        <div th:class="form-group" th:classappend="${#fields.hasErrors('nazivProizvoda')}? 'has-error'">
+            <label class="col-sm-2 control-label">Naziv proizvoda</label>
+            <div class="col-sm-10">
+                <input class="form-control" type="text" th:field="*{nazivProizvoda}" placeholder="Unesi naziv"/>
+                <p th:if="${#fields.hasErrors('nazivProizvoda')}" class="label label-danger" th:errors="*{nazivProizvoda}">Nije unet naziv</p>
+            </div>
+        </div>
+        <div th:class="form-group" th:classappend="${#fields.hasErrors('opis')}? 'has-error'">
+            <label class="col-sm-2 control-label">Opis proizvoda</label>
+            <div class="col-sm-10">
+                <input class="form-control" type="text" th:field="*{opis}" placeholder="Unesi opis"/>
+                <p th:if="${#fields.hasErrors('opis')}" class="label label-danger" th:errors="*{opis}">Nije unet opis</p>
+            </div>
+        </div>
+        <div th:class="form-group" th:classappend="${#fields.hasErrors('kategorija')}? 'has-error'">
+            <label class="col-sm-2 control-label">Kategorija</label>
+            <div class="col-sm-10">
+                <input class="form-control" type="text" th:field="*{kategorija}" placeholder="Unesi kategoriju"/>
+                <p th:if="${#fields.hasErrors('kategorija')}" class="label label-danger" th:errors="*{kategorija}">Nije uneta kateg</p>
+            </div>
+        </div>
+        <div th:class="form-group" th:classappend="${#fields.hasErrors('cena')}? 'has-error'">
+            <label class="col-sm-2 control-label">Cena proizvoda</label>
+            <div class="col-sm-10">
+                <input class="form-control" type="number" th:field="*{cena}" placeholder="Unesi cenu"/>
+                <p th:if="${#fields.hasErrors('cena')}" class="label label-danger" th:errors="*{cena}">Nije uneta cena</p>
+            </div>
+        </div>
+        <div th:class="form-group" th:classappend="${#fields.hasErrors('stanje')}? 'has-error'">
+            <label class="col-sm-2 control-label">Stanje proizvoda</label>
+            <div class="col-sm-10">
+                <input class="form-control" type="text" th:field="*{stanje}" placeholder="Unesi stanje"/>
+                <p th:if="${#fields.hasErrors('stanje')}" class="label label-danger" th:errors="*{stanje}">Nije uneto stanje</p>
+            </div>
+        </div>
+        <div th:class="form-group" th:classappend="${#fields.hasErrors('dostupnaKolicina')}? 'has-error'">
+            <label class="col-sm-2 control-label">Kolicina proizvoda</label>
+            <div class="col-sm-10">
+                <input class="form-control" type="number" th:field="*{dostupnaKolicina}" placeholder="Unesi kolicinu"/>
+                <p th:if="${#fields.hasErrors('dostupnaKolicina')}" class="label label-danger" th:errors="*{dostupnaKolicina}">Nije uneta kol</p>
+            </div>
+        </div>
+        <div th:class="form-group" th:classappend="${#fields.hasErrors('proizvodjac')}? 'has-error'">
+            <label class="col-sm-2 control-label">Proizvodjac</label>
+            <div class="col-sm-10">
+                <input class="form-control" type="text" th:field="*{proizvodjac}" placeholder="Unesi proizvodjaca"/>
+                <p th:if="${#fields.hasErrors('proizvodjac')}" class="label label-danger" th:errors="*{proizvodjac}">Nije unet proizvodjac</p>
+            </div>
+        </div>
+        <div th:class="form-group">
+            <label class="col-sm-2 control-label">Slika proizvoda</label>
+            <div class="col-sm-10">
+                <input class="form-control" type="file"  name="file"/>
+            </div>
+        </div>
+        <div class="row">
+            <button type="submit" class="btn btn-success">Updatuj proizvod</button>
+            <a href="/administrator/inventarProizvoda" class="btn btn-danger">Odustani</a>
+        </div>
+    </form>
+</div>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Nemate pristup | 403 - Access Denied</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}"
+          rel="stylesheet" media="screen"/>
+
+    <link th:href="@{/css/403.css}"
+          rel="stylesheet" media="screen"/>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"
+            th:src="@{/webjars/jquery/3.2.1/jquery.min.js}"></script>
+    <div th:replace="head::head"></div>
+</head>
+<body>
+<div class="cover">
+    <h1>Access Denied <small>Error 403</small></h1>
+    <p class="lead">The requested resource requires an authentication.</p>
+</div>
+<footer>
+    <p>Technical Contact: <a href="mailto:darko.stojanovic.2725@metropolitan.ac.rs">darko.stojanovic.2725@metropolitan.ac.rs</a></p>
+</footer>
+</body>
+</html>

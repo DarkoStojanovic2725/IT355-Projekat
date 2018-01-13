@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Registracija</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}"
+          rel="stylesheet" media="screen"/>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"
+            th:src="@{/webjars/jquery/3.2.1/jquery.min.js}"></script>
+    <div th:replace="head::head"></div>
+</head>
+<body style="padding-top: 200px">
+<div class="container">
+    <h1>Register</h1>
+    <p>Popunite sva potrebna polja za registraciju</p>
+    <form class="form-horizontal" th:object="${customer}" th:action="@{/registracija}" method="post">
+        <input type="hidden" th:field="*{customerId}"/>
+        <div th:class="form-group" th:classappend="${#fields.hasErrors('customerAddress')}? 'has-error'">
+            <label class="col-sm-2 control-label">Adresa</label>
+            <div class="col-sm-10">
+            <input class="form-control" type="text" th:field="*{customerAddress}" placeholder="Unesi adresu"/>
+            <p th:if="${#fields.hasErrors('customerAddress')}" class="label label-danger" th:errors="*{customerAddress}">Nije uneta adresa</p>
+            </div>
+        </div>
+        <div th:class="form-group" th:classappend="${#fields.hasErrors('customerCity')}? 'has-error'">
+            <label class="col-sm-2 control-label">Grad:</label>
+            <div class="col-sm-10">
+                <input class="form-control" type="text" th:field="*{customerCity}" placeholder="Unesi grad"/>
+                <p th:if="${#fields.hasErrors('customerCity')}" class="label label-danger" th:errors="*{customerCity}">Nije unet grad</p>
+            </div>
+        </div>
+        <div th:class="form-group" th:classappend="${#fields.hasErrors('customerEmail')}? 'has-error'">
+            <label class="col-sm-2 control-label">Email:</label>
+            <div class="col-sm-10">
+                <input class="form-control" type="text" th:field="*{customerEmail}" placeholder="Unesi email"/>
+                <p th:if="${#fields.hasErrors('customerEmail')}" class="label label-danger" th:errors="*{customerEmail}">Nije unet email</p>
+            </div>
+        </div>
+        <div th:class="form-group" th:classappend="${#fields.hasErrors('customerName')}? 'has-error'">
+            <label class="col-sm-2 control-label">Ime i prezime:</label>
+            <div class="col-sm-10">
+                <input class="form-control" type="text" th:field="*{customerName}" placeholder="Unesi ime i prezime"/>
+                <p th:if="${#fields.hasErrors('customerName')}" class="label label-danger" th:errors="*{customerName}">Nije uneo name i ln</p>
+            </div>
+        </div>
+        <div th:class="form-group" th:classappend="${#fields.hasErrors('customerPhone')}? 'has-error'">
+            <label class="col-sm-2 control-label">Broj telefona:</label>
+            <div class="col-sm-10">
+                <input class="form-control" type="text" th:field="*{customerPhone}" placeholder="Unesi broj telefona"/>
+                <p th:if="${#fields.hasErrors('customerPhone')}" class="label label-danger" th:errors="*{customerPhone}">Nije uneo tel</p>
+            </div>
+        </div>
+        <div th:class="form-group" th:classappend="${#fields.hasErrors('username')}? 'has-error'">
+            <label class="col-sm-2 control-label">Username:</label>
+            <div class="col-sm-10">
+                <input class="form-control" type="text" th:field="*{username}" placeholder="Unesi username"/>
+                <p th:if="${#fields.hasErrors('username')}" class="label label-danger" th:errors="*{username}">Nije uneo usn</p>
+            </div>
+        </div>
+        <div th:class="form-group" th:classappend="${#fields.hasErrors('password')}? 'has-error'">
+            <label class="col-sm-2 control-label">Password:</label>
+            <div class="col-sm-10">
+                <input class="form-control" type="text" th:field="*{password}" placeholder="Unesi password"/>
+                <p th:if="${#fields.hasErrors('password')}" class="label label-danger" th:errors="*{password}">Nije uneo pass</p>
+            </div>
+        </div>
+        <div class="row">
+            <button type="submit" class="btn btn-success">Registruj se</button>
+        </div>
+    </form>
+</div>
+</body>
+</html>
